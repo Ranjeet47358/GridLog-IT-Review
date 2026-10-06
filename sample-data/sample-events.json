@@ -1,0 +1,67 @@
+{
+  "note": "Sample tripping events — anonymised, not from production.",
+  "tripping_events": [
+    {
+      "id": 1,
+      "bay": "Baneshwor (66kV)",
+      "substation": "Patan",
+      "off_datetime_BS": "2083-06-20 00:31",
+      "off_datetime_AD": "2026-10-07 00:31",
+      "on_datetime_BS": "2083-06-20 02:14",
+      "on_datetime_AD": "2026-10-07 02:14",
+      "total_time_minutes": 103,
+      "relay": "Schneider P3U30",
+      "fault_type": "TEMPORARY",
+      "phases": { "G": true },
+      "Ig_A": 450,
+      "elements": ["E/F Stage-1"],
+      "remarks": "Earth fault, auto-reclosed successfully"
+    },
+    {
+      "id": 2,
+      "bay": "Suichatar-1 (11kV)",
+      "substation": "Patan",
+      "off_datetime_BS": "2083-06-19 14:05",
+      "off_datetime_AD": "2026-10-06 14:05",
+      "on_datetime_BS": "2083-06-19 16:30",
+      "on_datetime_AD": "2026-10-06 16:30",
+      "total_time_minutes": 145,
+      "relay": "Electromechanical",
+      "fault_type": "PERMANENT",
+      "phases": { "A": true, "B": true, "C": true },
+      "Ig_A": null,
+      "elements": ["O/C Stage-2"],
+      "remarks": "Conductor broken, repaired by field team"
+    },
+    {
+      "id": 3,
+      "bay": "Khimti Main (132kV)",
+      "substation": "Khimti",
+      "off_datetime_BS": "2083-06-18 08:22",
+      "off_datetime_AD": "2026-10-05 08:22",
+      "on_datetime_BS": null,
+      "on_datetime_AD": null,
+      "total_time_minutes": null,
+      "relay": "GE Multilin F650",
+      "fault_type": "FORCED",
+      "phases": {},
+      "elements": ["21 Zone-1"],
+      "remarks": "Distance relay operated — investigation ongoing"
+    }
+  ],
+  "shutdown_events": [
+    {
+      "id": 1,
+      "bay": "Baneshwor (66kV)",
+      "substation": "Patan",
+      "type": "PLANNED",
+      "off_datetime_BS": "2083-06-15 09:00",
+      "on_datetime_BS": "2083-06-15 13:00",
+      "total_time_minutes": 240,
+      "work_done": "Annual insulator cleaning and contact inspection",
+      "dcs_staff": "Ram Prasad Shrestha",
+      "opened_by": "Operator A",
+      "closed_by": "Operator B"
+    }
+  ]
+}

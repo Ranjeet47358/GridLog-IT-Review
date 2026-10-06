@@ -1,0 +1,15 @@
+REVIEW LICENSE
+==============
+
+This repository and all its contents are provided solely for IT review,
+evaluation, and audit purposes by authorised personnel of Nepal Electricity
+Authority (NEA) or its designated reviewers.
+
+Restrictions:
+- This material may not be copied, redistributed, or used to build derivative
+  works without written permission from the author.
+- Sample source code is illustrative only and does not represent the complete
+  production system.
+- No credentials, connection strings, or production configuration are included.
+
+© 2025 Ranjeet — All rights reserved.
