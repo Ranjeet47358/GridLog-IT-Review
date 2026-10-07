@@ -47,6 +47,9 @@ GridLog is a real-time power grid monitoring and event management system built f
 
 ## Screenshots
 
+### System Architecture
+![System Architecture](screenshots/system-architecture.png)
+
 ### Substation Desktop App — Tripping Events
 ![Tripping Events](screenshots/event-log.png)
 
