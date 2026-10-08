@@ -57,6 +57,8 @@ The following two endpoints do **not** require a JWT (used by the public ChatBot
 - `GET /api/tripping/pending`
 - `GET /api/shutdown/pending`
 
+These endpoints return a **restricted field set** to anonymous callers. Authenticated callers receive the full response. See the Security notes for the exact field lists.
+
 All other endpoints require a valid `Authorization: Bearer <token>` header.
 
 ---
@@ -138,8 +140,20 @@ List shutdown records. Same query params as tripping.
 ### POST `/api/shutdown`
 Create a shutdown record.
 
-### PUT `/api/shutdown/{id}/close`
-Close a shutdown, providing ON time and work summary.
+### PATCH `/api/shutdown/{id}/close`
+Close a shutdown. Requires JWT. The server verifies the closing operator's PIN and derives the operator ID server-side — the client never supplies an operator ID.
+
+**Body:**
+```json
+{
+  "onDateTime": "2026-10-08T14:30:00",
+  "closingPin": "1234"
+}
+```
+
+**Errors:**
+- `401 Unauthorized` — PIN not found or operator inactive
+- `400 Bad Request` — ON time before OFF time, or business rule not met (missing fault cause, staff not cleared)
 
 ---
 

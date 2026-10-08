@@ -193,7 +193,8 @@ Operator enters PIN
 | `[Authorize]` on SignalR GridHub | IMPLEMENTED |
 | JWT signing key — minimum 32 characters, never committed to Git | IMPLEMENTED |
 | JWT signing key supplied via environment variable `Jwt__SigningKey` | IMPLEMENTED (server) / PLANNED (set on VM) |
-| `POST /api/operator/verify` — in-form operator identity check (shutdown close) | IMPLEMENTED — requires JWT |
+| `POST /api/operator/verify` — in-form operator identity check (WPF dialogs, name display) | IMPLEMENTED — requires JWT |
+| `PATCH /api/shutdown/{id}/close` — server-side PIN verification; `closedBy` derived from DB, never from request body | IMPLEMENTED (2026-10-08) |
 | `GET /api/operator/pin/{pin}` — legacy PIN-in-URL endpoint | **REMOVED** (2026-10-08) |
 | Blazor Web login page (`/login`) | IMPLEMENTED |
 | Blazor navigation guard — unauthenticated requests redirect to `/login` | IMPLEMENTED |
@@ -212,6 +213,31 @@ Only three endpoints are accessible without a JWT:
 | `POST /api/auth/login` | Login endpoint itself — must be reachable without a token |
 | `GET /api/tripping/pending` | ChatBot reads this publicly for outage status queries |
 | `GET /api/shutdown/pending` | ChatBot reads this publicly for outage status queries |
+
+Anonymous callers receive a restricted subset of fields. Authenticated callers (WPF, Blazor, Notifier) receive the full response.
+
+**`GET /api/tripping/pending` — anonymous fields:**
+
+| Field | Included |
+|---|---|
+| Id, BayName, SubstationName | ✅ |
+| OffDateTime, Status, FaultType | ✅ |
+| Relay data (RelayName, FrameKey, phase booleans, currents) | ❌ excluded — internal technical data |
+| TripElements | ❌ excluded |
+
+**`GET /api/shutdown/pending` — anonymous fields:**
+
+| Field | Included |
+|---|---|
+| Id, BayName, SubstationName | ✅ |
+| OffDateTime, ShutdownType | ✅ |
+| AutoCreated, DetailsComplete | ✅ |
+| ExpectedRestoreTime, FaultCauseName | ✅ |
+| LocationDesc | ✅ — public location of work |
+| Remarks | ❌ excluded — may contain internal operational notes |
+| OperatorName, ClosedByName, OperatorId | ❌ excluded — operator PII |
+| Requesters (staff names, mobile numbers) | ❌ excluded — staff PII |
+| Linked trip relay data | ❌ excluded |
 
 ### JWT configuration
 
